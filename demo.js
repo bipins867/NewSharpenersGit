@@ -1,16 +1,31 @@
 
-// var lst=document.getElementsByTagName('li');
+var container=document.querySelector('.container')
+
+var h1=container.children[0]
+
+var div1=document.createElement('div')
+div1.className='div'
+div1.id='idDiv'
+
+var childText=document.createTextNode('HEllo word')
+div1.appendChild(childText)
+
+console.log(div1)
 
 
-// lst[2].style.display="None"
-
-// lst[1].style.backgroundColor='green'
+container.insertBefore(div1,h1)
 
 
-var li=document.querySelectorAll('li')
+var lst=document.querySelector('.list-group')
 
-li[1].style.color='red'
+var l1=lst.children[0]
 
-for(i=1;i<li.length;i=i+2){
-    li[i].style.backgroundColor='green'
-}
+
+var l0=document.createElement('li')
+l0.className=l1.className
+
+var textL=document.createTextNode('HEllo world')
+l0.appendChild(textL)
+
+
+lst.insertBefore(l0,l1)
