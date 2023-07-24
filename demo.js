@@ -1,31 +1,38 @@
-
-var container=document.querySelector('.container')
-
-var h1=container.children[0]
-
-var div1=document.createElement('div')
-div1.className='div'
-div1.id='idDiv'
-
-var childText=document.createTextNode('HEllo word')
-div1.appendChild(childText)
-
-console.log(div1)
+var addForm=document.getElementById('addForm')
+var lists=document.getElementById('items')
 
 
-container.insertBefore(div1,h1)
+addForm.addEventListener('submit',function(event){
+    event.preventDefault();
+    var text=document.getElementById('item').value
+    
+     var lie=document.createElement('li')
+     lie.className='list-group-item'
 
 
-var lst=document.querySelector('.list-group')
+     lie.appendChild(document.createTextNode(text));
 
-var l1=lst.children[0]
+     var button=document.createElement('button')
+     button.textContent='X'
+     button.className='btn btn-danger btn-sm float-right delete'
+
+     var editButton=document.createElement('button')
+     editButton.textContent='Edit'
+     editButton.className='btn btn-sm float-right edit'
+
+     
+
+     lie.appendChild(button)
+     lie.appendChild(editButton)
+
+     lists.appendChild(lie);
+
+    button.addEventListener('click',function(event){
+        if(confirm("Are you sure?")){
+            lists.removeChild(lie);
+        }
+    })
+     
+})
 
 
-var l0=document.createElement('li')
-l0.className=l1.className
-
-var textL=document.createTextNode('HEllo world')
-l0.appendChild(textL)
-
-
-lst.insertBefore(l0,l1)
