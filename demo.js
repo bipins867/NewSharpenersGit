@@ -1,6 +1,8 @@
 var addForm=document.getElementById('addForm')
 var lists=document.getElementById('items')
+var filter=document.getElementById('filter')
 
+filter.addEventListener('keyup',filterItem)
 
 addForm.addEventListener('submit',function(event){
     event.preventDefault();
@@ -36,3 +38,23 @@ addForm.addEventListener('submit',function(event){
 })
 
 
+
+function filterItem(event){
+    var stext=event.target.value.toLowerCase();
+
+    var lis=lists.getElementsByTagName('li')
+    
+    var arlis=Array.from(lis).forEach(function(item){
+        var child=item.firstChild.textContent.toLowerCase();
+
+        if(child.indexOf(stext)!=-1){
+            item.style.display='block'
+        }
+        else{
+            item.style.display='none'
+        }
+        
+    })
+
+   
+}
