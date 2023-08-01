@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script >
+        var lastActivityTime=new Date().getTime();
+
+function updateTime(){
+    lastActivityTime=new Date().getTime();
+}
+posts=[]
+
+function updateLastUserActivityTime (){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+
+            resolve();
+            console.log('Last Seen :- '+Date(lastActivityTime))
+        },1000)
+    });
+}
+
+function createPost(msg){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+
+            posts.push(msg);
+           
+            console.log('Post Created:-'+msg)
+
+            resolve();
+
+        },1000)
+    })
+}
+
+Promise.all([createPost("POST 1"),createPost("POST 2"),createPost("POST 3")]).then(()=>{
+    updateLastUserActivityTime().then(updateTime);
+})
+
+
+function deletePost(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            for(var x in posts){
+                console.log("Post Deleted:-"+x)
+            }
+            posts=[]
+            resolve();
+            console.log('Last Seen :- '+Date(lastActivityTime))
+        },3000)
+    })
+}
+
+deletePost().then(updateTime);
+    </script>
+</body>
+</html>
