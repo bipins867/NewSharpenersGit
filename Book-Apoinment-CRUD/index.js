@@ -17,7 +17,11 @@ function refressPage(){
     })
     .catch(error=>console.log(error))
 }
+
+window.addEventListener('DOMContentLoaded',()=>{
+    
 refressPage()
+})
 function addElement(data){
     
     const id=data.id
