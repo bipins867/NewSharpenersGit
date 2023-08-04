@@ -9,7 +9,7 @@ var tnum=document.getElementById('Phone')
 function refressPage(){
     axios.get('https://crudcrud.com/api/762290126a6f4fabaca3800ead333e7b/Appoinments')
     .then(values=>{
-        console.log(values.data)
+        //console.log(values.data)
         for(var idx in values.data){
             
             addElement(values.data[idx])
@@ -20,7 +20,7 @@ function refressPage(){
 
 window.addEventListener('DOMContentLoaded',()=>{
     
-refressPage()
+  refressPage()
 })
 function deleteFromCloud(id){
   axios.delete(`https://crudcrud.com/api/762290126a6f4fabaca3800ead333e7b/Appoinments/${id}`)
@@ -29,6 +29,14 @@ function deleteFromCloud(id){
     })
     .catch(error=>console.log(error))
 }
+function editFromCloud(id,obj){
+  axios.put(`https://crudcrud.com/api/762290126a6f4fabaca3800ead333e7b/Appoinments/${id}`,obj)
+    .then(values=>{
+        addElement(values.data)
+    })
+    .catch(error=>console.log(error))
+}
+
 function addElement(data){
     
     var id=data._id
@@ -58,8 +66,16 @@ function addElement(data){
     })
 
     editButton.addEventListener('click',function(event){
+      
         data=JSON.parse(localStorage.getItem(li.id))
         //localStorage.removeItem(li.id)
+        var obj={
+          name:name,
+          email:email,
+          num:number
+        }
+        //editFromCloud(id,obj)
+        deleteFromCloud(id)
         tname.value=data.name;
         temail.value=data.email;
         tnum.value=data.num
