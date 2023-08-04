@@ -22,9 +22,16 @@ window.addEventListener('DOMContentLoaded',()=>{
     
 refressPage()
 })
+function deleteFromCloud(id){
+  axios.delete(`https://crudcrud.com/api/762290126a6f4fabaca3800ead333e7b/Appoinments/${id}`)
+    .then(values=>{
+        console.log(values)
+    })
+    .catch(error=>console.log(error))
+}
 function addElement(data){
     
-    const id=data.id
+    var id=data._id
     var name=data.name;
     var email=data.email;
     var number=data.num
@@ -45,6 +52,8 @@ function addElement(data){
     list.appendChild(li);
     btn.addEventListener('click',function(event){
         //localStorage.removeItem(li.id);
+        
+        deleteFromCloud(id)
         list.removeChild(li)
     })
 
